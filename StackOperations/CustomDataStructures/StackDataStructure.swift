@@ -7,7 +7,10 @@
 
 import Foundation
 
-///Stack dataStructure
+/// Genric Stack dataStructure
+/// Supports All Objects that are Comparable
+/// Used as the primary data source
+/// Is backed by an Array
 struct Stack<T:Comparable>:StackOperation
 {
     typealias Element = T
@@ -58,7 +61,8 @@ struct Stack<T:Comparable>:StackOperation
         self.dataStore.sorted()
     }
     
-    mutating func clear() {
+    mutating func clear()
+    {
         self.dataStore.removeAll()
     }
 }

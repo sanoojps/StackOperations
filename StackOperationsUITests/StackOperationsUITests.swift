@@ -30,6 +30,90 @@ class StackOperationsUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+    }
+    
+    func testPush()
+    {
+        let app = XCUIApplication()
+        
+        let ddMmYyyyTextField = app.textFields["DD/MM/YYYY"]
+        ddMmYyyyTextField.tap()
+        ddMmYyyyTextField.typeText("2/3/4")
+        
+        app/*@START_MENU_TOKEN@*/.buttons["Return"]/*[[".keyboards",".buttons[\"return\"]",".buttons[\"Return\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let pushButton = app.buttons["PUSH"]
+        pushButton.tap()
+        
+        XCTAssertTrue(app.tables.cells.element(boundBy: 0).exists,"Cell created")
+    }
+    
+    func testPop()
+    {
+        let app = XCUIApplication()
+        
+        let ddMmYyyyTextField = app.textFields["DD/MM/YYYY"]
+        ddMmYyyyTextField.tap()
+        ddMmYyyyTextField.typeText("2/3/4")
+        
+        app/*@START_MENU_TOKEN@*/.buttons["Return"]/*[[".keyboards",".buttons[\"return\"]",".buttons[\"Return\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let pushButton = app.buttons["PUSH"]
+        pushButton.tap()
+        
+        let popButton = app.buttons["POP"]
+        popButton.tap()
+        
+        XCTAssertFalse(app.tables.cells.element(boundBy: 0).exists,"Cell Distroyed")
+    }
+    
+    func testClear()
+    {
+        let app = XCUIApplication()
+        
+        let ddMmYyyyTextField = app.textFields["DD/MM/YYYY"]
+        ddMmYyyyTextField.tap()
+        ddMmYyyyTextField.typeText("2/3/4")
+        
+        app/*@START_MENU_TOKEN@*/.buttons["Return"]/*[[".keyboards",".buttons[\"return\"]",".buttons[\"Return\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let pushButton = app.buttons["PUSH"]
+        pushButton.tap()
+        
+        let clearButton = app.buttons["CLEAR"]
+        clearButton.tap()
+        
+        XCTAssertTrue(app.tables.cells.staticTexts.count == 0,"Cell Distroyed")
+    }
+    
+    func testSort()
+    {
+        let app = XCUIApplication()
+        let ddMmYyyyTextField = app.textFields["DD/MM/YYYY"]
+        ddMmYyyyTextField.tap()
+        ddMmYyyyTextField.typeText("2/3/4")
+        
+        let pushButton = app.buttons["PUSH"]
+        pushButton.tap()
+        
+        let deleteKey = app/*@START_MENU_TOKEN@*/.keys["delete"]/*[[".keyboards.keys[\"delete\"]",".keys[\"delete\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        
+        "2/3/4".forEach { (char) in
+            deleteKey.tap()
+        }
+        
+        ddMmYyyyTextField.typeText("1/2/3")
+        
+        pushButton.tap()
+        
+        app.buttons["SORT"].tap()
+        
+        XCTAssertTrue(app.tables.cells.element(boundBy: 0).staticTexts["01/02/0003"].exists,"Cell 01/02/0003 Exists")
+        
+        XCTAssertTrue(app.tables.cells.element(boundBy: 1).staticTexts["02/03/0004"].exists ,"Cell 02/03/0004 Exists")
+        
+        
     }
     
 }

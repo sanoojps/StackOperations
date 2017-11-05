@@ -7,11 +7,12 @@
 
 import UIKit
 
-//Generic Abstract table view datasource class
-//Supports any object that implements "Comparable" protocol
-//usage - subclass
-// ovveride dataSourceCollection with the type of the object
-//example usage - refer to "DateDisplayTableViewDataSource"
+/// Generic Abstract table view datasource class
+/// Supports any object that implements "Comparable" protocol
+/// usage - subclass
+/// ovveride dataSourceCollection with the type of the object
+/// example usage - refer to "DateDisplayTableViewDataSource"
+
 class BaseTableViewDataSource<T:Comparable>: NSObject, UITableViewDataSource, UITableViewDelegate, DateDisplayCellDataSourceCollection , ConfigureTableViewCell {
     
     //MARK:- Protocol conformance for protocols with Associated Types

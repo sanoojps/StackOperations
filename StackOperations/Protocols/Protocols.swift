@@ -12,7 +12,7 @@ import UIKit.UITableViewCell
 //MARK: - Protocols
 //MARK: - Bevaiour Abstraction of Stack Data Structure
 /*
- Represents Basic "stack" operations
+ Represents Basic "stack" data structure operations
  */
 protocol StackOperation
 {
@@ -40,8 +40,8 @@ protocol StackOperation
 
 
 //MARK: - Configure TableViewCell
-//Protocol that defines  a abstract common API that can be used/implemented by any
-//tableview data source to configure its tableview cell
+/// Protocol that defines  a abstract common API that can be used/implemented by any
+/// tableview data source to configure its tableview cell
 protocol ConfigureTableViewCell
 {
     associatedtype Element:Comparable
@@ -58,10 +58,10 @@ protocol ConfigureTableViewCell
 }
 
 //MARK: - Date Display Cell DataSource Collection
-//- Defines a collection type fpr the dataSource classes
-//- supports Stack data structure
-//- sample implementation at BaseTableViewDataSource
-//- usage -> assign a "Stack" object
+/// -  Defines a collection type fpr the dataSource classes
+/// - supports Stack data structure
+/// - sample implementation at BaseTableViewDataSource
+/// - usage -> assign a "Stack" object
 protocol DateDisplayCellDataSourceCollection
 {
     associatedtype Element:Comparable
@@ -69,8 +69,8 @@ protocol DateDisplayCellDataSourceCollection
 }
 
 //MARK: - Table ViewController Data Access Mediator
-//- sample implementation at BaseTableViewDataSource and DateDisplayTableViewDataSource
-//- usage -> assign a "BaseTableViewDataSource" object
+/// - sample implementation at BaseTableViewDataSource and DateDisplayTableViewDataSource
+/// - usage -> assign a "BaseTableViewDataSource" object
 protocol TableViewControllerDataAccessMediator
 {
     associatedtype Element:Comparable
@@ -78,8 +78,8 @@ protocol TableViewControllerDataAccessMediator
 }
 
 //MARK: - Data Item Change Propagator Delegate
-//- Abstract SPI tp handle button clicks
-//- or any change to the View Controller that needs to be propagated to the tableview
+/// - Abstract SPI tp handle button clicks
+/// - or any change to the View Controller that needs to be propagated to the tableview
 protocol DataItemChangePropagatorDelegate
 {
     //save the typed in value

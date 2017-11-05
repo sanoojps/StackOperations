@@ -7,8 +7,11 @@
 
 import UIKit
 
+/// concrete sublass of genric BaseTableViewDataSource with datatype "Date"
+/// explicitly specified
 class DateDisplayTableViewDataSource: BaseTableViewDataSource<Date> {
 
+    //overridden as BaseTableViewDataSource is a generic class
     override var dataSourceCollection: Stack<Date>
     {
         get

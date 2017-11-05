@@ -7,6 +7,12 @@
 
 import UIKit
 
+/// Base class for Table View Controllers.
+/// Contains only stub implmentations.
+/// Need to be subclassed.
+///
+/// Conforms to : `TableViewControllerDataAccessMediator` protocol
+
 class BaseTableViewController<T:Comparable>: UITableViewController ,TableViewControllerDataAccessMediator {
     
     //protocol conformance TableViewControllerDataAccessMediator

@@ -7,6 +7,9 @@
 
 import UIKit
 
+/// Base class for View Controllers.
+/// Contains only stub implmentations.
+/// Need to be subclassed.
 class BaseViewController: UIViewController {
 
     override func viewDidLoad() {

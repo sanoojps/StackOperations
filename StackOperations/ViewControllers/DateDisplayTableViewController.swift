@@ -9,6 +9,10 @@ import UIKit
 
 class DateDisplayTableViewController: BaseTableViewController<Date> {
 
+    /// dataAccessMediator.
+    ///
+    /// - oveoverriden to support Date
+    ///
     override var dataAccessMediator: BaseTableViewDataSource<Date>?
     {
         get

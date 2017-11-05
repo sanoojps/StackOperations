@@ -7,6 +7,9 @@
 
 import UIKit
 
+/// Main View Controller.
+/// Uses `DataItemChangePropagatorDelegate` to brodcast any changes
+/// inherits from - BaseViewController
 class DateDisplayViewController: BaseViewController {
 
     //MARK: - Outlets
@@ -16,6 +19,13 @@ class DateDisplayViewController: BaseViewController {
     
     //MARK: - Actions
     
+    /// Fired when Clear button is clicked.
+    ///
+    /// - clears stack
+    /// - text in textField
+    ///
+    /// - Parameter sender: Uibutton
+  
     @IBAction func didClickClearButton(_ sender: UIButton)
     {
         //clear typed text
@@ -26,12 +36,27 @@ class DateDisplayViewController: BaseViewController {
         self.changePropagatorDelegate?.clearAllvalues()
     }
     
+    
+    /// Fired when Sort button is clicked.
+    ///
+    /// - sorts stack
+    /// - alerts For Empty Stack
+    ///
+    /// - Parameter sender: UIbutton
     @IBAction func didClickSortButton(_ sender: UIButton)
     {
         self.alertForEmptyStack()
         self.changePropagatorDelegate?.sortValue()
     }
     
+    /// Fired when Sort button is clicked.
+    ///
+    /// - puhses item into stack
+    /// - handles data validation before push
+    /// - validates against emptyString
+    /// - validates against dateToString
+    ///
+    /// - Parameter sender: UIbutton
     @IBAction func didClickPushButton(_ sender: UIButton)
     {
         
@@ -48,6 +73,12 @@ class DateDisplayViewController: BaseViewController {
     
     }
     
+    /// Fired when Sort button is clicked.
+    ///
+    /// - pops stack
+    /// - alerts For Empty Stack
+    ///
+    /// - Parameter sender: UIbutton
     @IBAction func didClickPopButton(_ sender: Any)
     {
         self.alertForEmptyStack()
@@ -107,6 +138,14 @@ extension DateDisplayViewController:UITextFieldDelegate
 extension DateDisplayViewController
 {
     
+    /// handlesDataValidation.
+    ///
+    /// - validates date
+    /// - validates date from String
+    /// - alerts For failed validation
+    ///
+    /// - Parameter dateString: String
+    /// - Returns: Bool status
     func handleDataValidation(dateString:String) -> Bool
     {
         //Validation for date
@@ -144,6 +183,13 @@ extension DateDisplayViewController
         }
     }
     
+    /// handlesEmptyStringValidation.
+    ///
+    /// - validates empty string
+    /// - alerts For failed validation
+    ///
+    /// - Parameter dateString: String
+    /// - Returns: Bool status
     func handleEmptyStringValidation(dateString:String) -> Bool
     {
         //empty string validation
@@ -163,6 +209,12 @@ extension DateDisplayViewController
         return true
     }
     
+    /// handlesDataValidation.
+    ///
+    /// - performs all Validations
+    ///
+    /// - Parameter dateString: String
+    /// - Returns: Bool status
     func isDataValid(dateString:String) ->Bool
     {
         guard self.handleEmptyStringValidation(dateString: dateString) else
@@ -178,6 +230,10 @@ extension DateDisplayViewController
         return true
     }
  
+    /// alertForEmptyStack.
+    ///
+    /// - raises an alert if stack is empty
+    ///
     func alertForEmptyStack()
     {
         if let changePropagatorDelegate = self.changePropagatorDelegate,
