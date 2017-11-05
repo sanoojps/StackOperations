@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  StackOperations
+
+  Created by sanooj on 11/5/17.
+  
+*/
+
+
+"EMPTY_STRING_ALERT_MESSAGE" = "Empty Field" ;
+"EMPTY_STRING_ALERT_MESSAGE_BODY" = "Please enter a date." ;
+
+"INCORRECT_DATE_FORMAT_ALERT_MESSAGE" = "Invalid Date";
+"INCORRECT_DATE_FORMAT_ALERT_MESSAGE_BODY" = "Please enter a date in \"DD/MM/YYYY\" format.";
+
+"UNKNOWN_ERROR_ALERT_MESSAGE" = "Error" ;
+"UNKNOWN_ERROR_ALERT_MESSAGE_BODY" = "Unknown Error Occurred! \n Apologies.";
+
+
+
+
+
