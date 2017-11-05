@@ -9,16 +9,24 @@ import Foundation
 
 struct Constants
 {
+    private init() {}
+    
     struct Identifiers
     {
+        private init() {}
+        
         struct TableCellIdentifiers
         {
+            private init() {}
+            
             static let dateDisplayTableViewCellID: String =
             "dateDisplayTableViewCellID"
         }
         
         struct StoryboardIdentifiers
         {
+            private init() {}
+            
             static let dateDisplayTableViewControllerID: String =
             "dateDisplayTableViewControllerID"
             
@@ -30,8 +38,12 @@ struct Constants
     
     struct Formats
     {
+        private init() {}
+        
         struct DateFormats
         {
+            private init() {}
+            
             //DD - days in a year
             //MM - month in year
             //yy - year
@@ -44,6 +56,8 @@ struct Constants
         
         struct Regexes
         {
+            private init() {}
+            
             static let ddmmyyFormatValidator =
             "([0-9]{2}/[0-9]{2}/[0-9]{4})"
             

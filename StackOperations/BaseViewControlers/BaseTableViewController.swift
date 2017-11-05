@@ -9,7 +9,7 @@ import UIKit
 
 class BaseTableViewController<T:Comparable>: UITableViewController ,TableViewControllerDataAccessMediator {
     
-    //protocol confromance TableViewControllerDataAccessMediator
+    //protocol conformance TableViewControllerDataAccessMediator
     typealias Element = T
     
     var dataAccessMediator:BaseTableViewDataSource<T>? =

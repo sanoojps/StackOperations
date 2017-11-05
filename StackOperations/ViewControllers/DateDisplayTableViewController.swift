@@ -68,6 +68,12 @@ extension DateDisplayTableViewController:DataItemChangePropagatorDelegate
     
     func popValue()
     {
+        guard let dataSourceCollection = self.dataAccessMediator?.dataSourceCollection ,
+            !dataSourceCollection.isEmpty else
+        {
+            return
+        }
+        
         self.dataAccessMediator?.dataSourceCollection.pop()
         
         //reload tableview
@@ -76,6 +82,12 @@ extension DateDisplayTableViewController:DataItemChangePropagatorDelegate
     
     func sortValue()
     {
+        guard let dataSourceCollection = self.dataAccessMediator?.dataSourceCollection ,
+            !dataSourceCollection.isEmpty else
+        {
+            return
+        }
+        
         self.dataAccessMediator?.dataSourceCollection.sort()
         
         //reload tableview
@@ -84,11 +96,20 @@ extension DateDisplayTableViewController:DataItemChangePropagatorDelegate
     
     func clearAllvalues()
     {
+        guard let dataSourceCollection = self.dataAccessMediator?.dataSourceCollection ,
+            !dataSourceCollection.isEmpty else
+        {
+            return
+        }
+        
         self.dataAccessMediator?.dataSourceCollection.clear()
         
         //reload tableview
         self.tableView.reloadData()
     }
     
-    
+    func isEmpty() -> Bool
+    {
+        return self.dataAccessMediator?.dataSourceCollection.isEmpty ?? true
+    }
 }

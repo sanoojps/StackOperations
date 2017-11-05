@@ -42,11 +42,15 @@ import UIKit.UIAlertController
 
 struct Utilities
 {
+    private init() {}
+    
     //MARK - Validators
     struct Validators
     {
         struct DateValidator
         {
+            private init() {}
+            
             static func validate(formatString:String , withRegex regex:String) -> Bool
             {
                 guard let validationRegEx: NSRegularExpression =
@@ -128,6 +132,8 @@ struct Utilities
     
     struct Formatters
     {
+        private init() {}
+        
         static func getDateFrom(dateString: String, dateFormat: String =  Constants.Formats.DateFormats.ddMMyyyy) -> Date?
         {
             let dateFormatter =
@@ -139,7 +145,7 @@ struct Utilities
             return dateFormatter.date(from:dateString)
         }
         
-        static func getStringFrom(date: Date , dateFormat: String =  Constants.Formats.DateFormats.ddMMyyyy) -> String?
+        static func getStringFrom(date: Date , dateFormat: String =  Constants.Formats.DateFormats.ddMMyyyy) -> String
         {
             let dateFormatter =
                 DateFormatter()
@@ -153,6 +159,8 @@ struct Utilities
     
     struct  Alert
     {
+        private init() {}
+        
         static func display(presenter:UIViewController?,
                             errorMsgTitle:String? =
             Utilities.Localization.localize(key: "UNKNOWN_ERROR_ALERT_MESSAGE"),
@@ -191,6 +199,8 @@ struct Utilities
     
     struct Localization
     {
+        private init() {}
+        
         static func  localize(key:String) -> String
         {
             return NSLocalizedString(key,comment: "")

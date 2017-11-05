@@ -95,4 +95,6 @@ protocol DataItemChangePropagatorDelegate
     
     //remove all Values
     func clearAllvalues()
+    
+    func isEmpty() -> Bool
 }

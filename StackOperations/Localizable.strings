@@ -16,7 +16,8 @@
 "UNKNOWN_ERROR_ALERT_MESSAGE" = "Error" ;
 "UNKNOWN_ERROR_ALERT_MESSAGE_BODY" = "Unknown Error Occurred! \n Apologies.";
 
-
+"EMPTY_STACK_ALERT_MESSAGE" = "Empty Stack" ;
+"EMPTY_STACK_ALERT_MESSAGE_BODY" = "Please enter a date and push it." ;
 
 
 

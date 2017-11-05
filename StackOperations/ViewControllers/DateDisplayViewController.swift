@@ -18,11 +18,17 @@ class DateDisplayViewController: BaseViewController {
     
     @IBAction func didClickClearButton(_ sender: UIButton)
     {
+        //clear typed text
+        self.dateTextField.text =
+            ""
+        
+        self.alertForEmptyStack()
         self.changePropagatorDelegate?.clearAllvalues()
     }
     
     @IBAction func didClickSortButton(_ sender: UIButton)
     {
+        self.alertForEmptyStack()
         self.changePropagatorDelegate?.sortValue()
     }
     
@@ -32,66 +38,20 @@ class DateDisplayViewController: BaseViewController {
         let dateString: String =
         self.dateTextField?.text ?? ""
         
-        //empty string validation
-        guard !dateString.isEmpty else
+        if isDataValid(dateString: dateString)
         {
-            Utilities.Alert.display(
-                presenter: self,
-                errorMsgTitle:
-                Utilities.Localization.localize(key: "EMPTY_STRING_ALERT_MESSAGE"),
-                errorMsgBody:
-                Utilities.Localization.localize(key: "EMPTY_STRING_ALERT_MESSAGE_BODY")
-            )
+            let dateFromString: Date =
+                Utilities.Formatters.getDateFrom(dateString: dateString)!
             
-            return
-        }
-        
-        //add current date
-        //self.changePropagatorDelegate?.pushValue(Date())
-        
-        //Validation for date
-        if Utilities.Validators.DateValidator.validateDate(dateString, againstFormat: Constants.Formats.DateFormats.ddMMyyyy)
-        {
-            if let dateFromString: Date =
-                Utilities.Formatters.getDateFrom(dateString: dateString)
-            {
-                self.changePropagatorDelegate?.pushValue(dateFromString)
-                return
-            }
-            else
-            {
-                Utilities.Alert.display(
-                    presenter: self,
-                    errorMsgTitle:
-                    Utilities.Localization.localize(key: "INCORRECT_DATE_FORMAT_ALERT_MESSAGE"),
-                    errorMsgBody:
-                    Utilities.Localization.localize(key: "INCORRECT_DATE_FORMAT_ALERT_MESSAGE_BODY")
-                )
-                
-                //add current date
-                //self.changePropagatorDelegate?.pushValue(Date())
-                return
-            }
-        }
-        else
-        {
-            Utilities.Alert.display(
-                presenter: self,
-                errorMsgTitle:
-                Utilities.Localization.localize(key: "INCORRECT_DATE_FORMAT_ALERT_MESSAGE"),
-                errorMsgBody:
-                Utilities.Localization.localize(key: "INCORRECT_DATE_FORMAT_ALERT_MESSAGE_BODY")
-            )
-            
-            //add current date
-            //self.changePropagatorDelegate?.pushValue(Date())
-            //alert
+            self.changePropagatorDelegate?.pushValue(dateFromString)
         }
     
     }
     
     @IBAction func didClickPopButton(_ sender: Any)
     {
+        self.alertForEmptyStack()
+        
         self.changePropagatorDelegate?.popValue()
     }
     
@@ -136,5 +96,101 @@ class DateDisplayViewController: BaseViewController {
 
 extension DateDisplayViewController:UITextFieldDelegate
 {
-    //stub
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+
+extension DateDisplayViewController
+{
+    
+    func handleDataValidation(dateString:String) -> Bool
+    {
+        //Validation for date
+        if Utilities.Validators.DateValidator.validateDate(dateString, againstFormat: Constants.Formats.DateFormats.ddMMyyyy)
+        {
+            if let _: Date =
+                Utilities.Formatters.getDateFrom(dateString: dateString)
+            {
+                return true
+            }
+            else
+            {
+                Utilities.Alert.display(
+                    presenter: self,
+                    errorMsgTitle:
+                    Utilities.Localization.localize(key: "INCORRECT_DATE_FORMAT_ALERT_MESSAGE"),
+                    errorMsgBody:
+                    Utilities.Localization.localize(key: "INCORRECT_DATE_FORMAT_ALERT_MESSAGE_BODY")
+                )
+                
+                return false
+            }
+        }
+        else
+        {
+            Utilities.Alert.display(
+                presenter: self,
+                errorMsgTitle:
+                Utilities.Localization.localize(key: "INCORRECT_DATE_FORMAT_ALERT_MESSAGE"),
+                errorMsgBody:
+                Utilities.Localization.localize(key: "INCORRECT_DATE_FORMAT_ALERT_MESSAGE_BODY")
+            )
+            
+            return false
+        }
+    }
+    
+    func handleEmptyStringValidation(dateString:String) -> Bool
+    {
+        //empty string validation
+        guard !dateString.isEmpty else
+        {
+            Utilities.Alert.display(
+                presenter: self,
+                errorMsgTitle:
+                Utilities.Localization.localize(key: "EMPTY_STRING_ALERT_MESSAGE"),
+                errorMsgBody:
+                Utilities.Localization.localize(key: "EMPTY_STRING_ALERT_MESSAGE_BODY")
+            )
+            
+            return false
+        }
+        
+        return true
+    }
+    
+    func isDataValid(dateString:String) ->Bool
+    {
+        guard self.handleEmptyStringValidation(dateString: dateString) else
+        {
+            return false
+        }
+        
+        guard self.handleDataValidation(dateString: dateString) else
+        {
+            return false
+        }
+        
+        return true
+    }
+ 
+    func alertForEmptyStack()
+    {
+        if let changePropagatorDelegate = self.changePropagatorDelegate,
+            changePropagatorDelegate.isEmpty()
+        {
+            Utilities.Alert.display(
+                presenter: self,
+                errorMsgTitle:
+                Utilities.Localization.localize(key: "EMPTY_STACK_ALERT_MESSAGE"),
+                errorMsgBody:
+                Utilities.Localization.localize(key: "EMPTY_STACK_ALERT_MESSAGE_BODY")
+            )
+        }
+    }
+    
 }
