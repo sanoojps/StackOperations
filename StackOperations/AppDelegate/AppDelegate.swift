@@ -8,6 +8,22 @@
 import UIKit
 import CoreData
 
+
+/**
+ Read me
+ 
+take dates as inputs from TextField in dd/MM/yyyy Format
+4 buttons which would create stack operations
+ 
+ 1) add to stack.
+ 2) Pop from stack.
+ 3) clear the stack.
+ 4) Sort the dates in the stack in ascending order
+ 
+unit tests and error handling when input values are invalid.
+
+ */
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
